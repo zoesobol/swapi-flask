@@ -7,6 +7,10 @@ def get_sentence(name, list_of_films):
     last_film_title = list_of_films.pop()
     return f'{name} participated in {", ".join(list_of_films)} and {last_film_title}.'
 
+@app.route('/', methods=['GET'])
+def index():
+    return 'Go to /skywalker mf'
+
 @app.route('/skywalker', methods=['GET'])
 def skywalker():
     api_fetch = requests.get('https://swapi.dev/api/people/?search=skywalker')
@@ -28,3 +32,5 @@ def skywalker():
     return flask.jsonify({'status': 200, 'description': ' '.join(texts)})
 
 
+if __name__ == "__main__":
+    app.run(host='0.0.0.0')
